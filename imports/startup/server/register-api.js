@@ -1,6 +1,8 @@
 import { createApolloServer } from 'meteor/apollo'
 import { makeExecutableSchema } from 'graphql-tools'
 import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql'
+import ResolutionsResolvers from '../../api/resolutions/resolvers'
+import merge from 'lodash/merge'
 
 // in a real project you're gonna have a lot of schemas that will be combining
 // keep creating schemas, importing them, and adding them to typeDefs array below
@@ -21,44 +23,17 @@ const typeDefs = [
     ResolutionsSchema
 ]
 
-
-// this is javascript
-// actual method - server side code
-const resolvers = {
+const testResolvers = {
     Query: {
         hi() {
             return "Hello Level Up"
-        },
-        resolutions() {
-            return [
-                {
-                    _id: "asdfasdfasdf",
-                    name: "Get stuff done!"
-                },
-                {
-                    _id: "fffff",
-                    name: "Lose some weight!"
-                }
-            ]
         }
     }
 }
 
-// in /graphiql, just type:
-
-// {
-//     hi
-// }
-
-// {
-//     resolutions {
-//           _id
-//       name
-//     }
-//   }
-
-// only get what we ask for
-// not hitting an api and getting a bunch of data, only saying hey give me this specific data
+// lodash merge 2 objects
+const resolvers = merge(testResolvers, ResolutionsResolvers)
+console.log(resolvers)
 
 const schema = makeExecutableSchema({
     typeDefs,

@@ -7,7 +7,7 @@ const App = ({data}) => {
     if (data.loading) return null
     return (
         <div>
-            <h1>{data.hi}</h1>;
+            <h1>{data.hi}</h1>
             {/* 
             when component first loads data doesn't necessarily come in immediately 
             how do we prevent react from trying to load graphql stuff before data is available?

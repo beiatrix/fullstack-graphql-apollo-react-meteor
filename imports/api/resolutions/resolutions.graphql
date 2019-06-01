@@ -1,0 +1,9 @@
+# name
+# createdAt 
+    # there is no date type in apollo
+# [todoId]
+
+type Resolutions {
+    _id: String! #bang means mandatory
+    name: String!
+}

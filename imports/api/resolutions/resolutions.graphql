@@ -3,7 +3,8 @@
     # there is no date type in apollo
 # [todoId]
 
-type Resolutions {
-    _id: String! #bang means mandatory
+# describes what we expect to be returned
+type Resolution {
+    _id: String! # bang means mandatory
     name: String!
 }

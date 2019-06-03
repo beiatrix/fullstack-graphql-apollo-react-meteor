@@ -1,9 +1,5 @@
 import Resolutions from './resolutions' // bringing in the collection
 
-// Resolutions.insert({
-//     name: "Test Res", 
-// })
-
 // const res = Resolutions.find({}).fetch()
 // console.log(res)
 
@@ -14,6 +10,16 @@ export default {
     Query: {
         resolutions() {
             return Resolutions.find({}).fetch()
+        }
+    },
+    // a new type
+    // usually do these in a separate file and do a merge 
+    Mutation: {
+        createResolution() {
+            console.log("got here")
+            Resolutions.insert({
+                name: "Test Res", 
+            })
         }
     }
 }

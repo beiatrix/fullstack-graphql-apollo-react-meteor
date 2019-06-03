@@ -1,6 +1,7 @@
 import React from "react";
 import gql from 'graphql-tag' // allows us to write a graphql query with js
 import { graphql } from 'react-apollo'
+import ResolutionForm from './ResolutionForm'
 
 const App = ({data}) => {
     // data.loading - super important and useful!
@@ -8,6 +9,7 @@ const App = ({data}) => {
     return (
         <div>
             <h1>{data.hi}</h1>
+            <ResolutionForm />
             {/* 
             when component first loads data doesn't necessarily come in immediately 
             how do we prevent react from trying to load graphql stuff before data is available?

@@ -11,3 +11,7 @@ type Resolution {
     _id: String! # bang means mandatory
     name: String!
 }
+
+type Mutation {
+    createResolution: Resolution
+}

@@ -1,19 +1,19 @@
+import Resolutions from './resolutions' // bringing in the collection
+
+// Resolutions.insert({
+//     name: "Test Res", 
+// })
+
+// const res = Resolutions.find({}).fetch()
+// console.log(res)
+
 // this is javascript
 // actual method - server side code
 export default {
     // Queries are not the only type of resolvers, there are lots of different types
     Query: {
         resolutions() {
-            return [
-                {
-                    _id: "asdfasdfasdf",
-                    name: "Get stuff done!"
-                },
-                {
-                    _id: "fffff",
-                    name: "Lose some weight!"
-                }
-            ]
+            return Resolutions.find({}).fetch()
         }
     }
 }

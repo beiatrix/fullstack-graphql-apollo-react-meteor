@@ -3,7 +3,10 @@
     # there is no date type in apollo
 # [todoId]
 
-# describes what we expect to be returned
+# schema of public api
+# this describes what we expect to be returned
+# doesn't need to be 1 to 1 with shape of our data in our database
+# this is the schema of ur public api. what u can grab publicly
 type Resolution {
     _id: String! # bang means mandatory
     name: String!

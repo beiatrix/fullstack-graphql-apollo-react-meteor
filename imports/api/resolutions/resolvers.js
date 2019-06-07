@@ -1,4 +1,5 @@
 import Resolutions from './resolutions' // bringing in the collection
+import Goals from '../goals/goals'
 
 // const res = Resolutions.find({}).fetch()
 // console.log(res)
@@ -14,6 +15,18 @@ export default {
             console.log(userId)
             return Resolutions.find({
                 userId
+            }).fetch()
+        }
+    },
+
+    // custom resolvers
+    // relations!
+    Resolution: {
+        // a resolution object
+        goals: resolution => {
+            console.log(resolution._id)
+            return Goals.find({
+                resolutionId: resolution._id
             }).fetch()
         }
     },

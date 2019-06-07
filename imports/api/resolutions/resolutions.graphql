@@ -10,6 +10,7 @@
 type Resolution {
     _id: String! # bang means mandatory
     name: String!
+    goals: [Goal]
 }
 
 type Query {
@@ -19,4 +20,4 @@ type Query {
 type Mutation {
     createResolution(name: String!): Resolution
 } 
-
+ 

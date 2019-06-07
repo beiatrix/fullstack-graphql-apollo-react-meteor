@@ -15,6 +15,7 @@ const App = ({loading, resolutions}) => {
             <RegisterForm />
             <LoginForm />
             <ResolutionForm />
+            <button onClick={() => Meteor.logout()}>Logout</button>
             {/* 
             when component first loads data doesn't necessarily come in immediately 
             how do we prevent react from trying to load graphql stuff before data is available?

@@ -8,7 +8,10 @@ import Resolutions from './resolutions' // bringing in the collection
 export default {
     // Queries are not the only type of resolvers, there are lots of different types
     Query: {
-        resolutions() {
+        // params: obj, args, context
+        // destructured userId from context
+        resolutions(obj, args, { userId }) {
+            console.log(userId)
             return Resolutions.find({}).fetch()
         }
     },

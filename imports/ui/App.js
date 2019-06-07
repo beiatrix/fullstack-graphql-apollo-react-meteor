@@ -2,6 +2,8 @@ import React from "react";
 import gql from 'graphql-tag' // allows us to write a graphql query with js
 import { graphql } from 'react-apollo'
 import ResolutionForm from './ResolutionForm'
+import RegisterForm from './RegisterForm'
+import LoginForm from './LoginForm'
 
 // this component is much less aware of graphql. simply looking for a loading state & resolution
 const App = ({loading, resolutions}) => {
@@ -10,6 +12,8 @@ const App = ({loading, resolutions}) => {
     return (
         <div>
             {/* deleted refetch prop that was here. shouldn't have to refetch manually */}
+            <RegisterForm />
+            <LoginForm />
             <ResolutionForm />
             {/* 
             when component first loads data doesn't necessarily come in immediately 

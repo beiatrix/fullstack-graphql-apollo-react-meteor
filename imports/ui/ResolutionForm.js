@@ -20,9 +20,10 @@ class ResolutionForm extends Component {
                 name: this.name.value
             }
         // our mutation returns a promise
-        }).then(({data}) => {
-            // we want to refetch our query
-            this.props.refetch()
+        // we want to refetch our query
+        // but apollo shouldn't have to refetch our query... should be aware of our data
+        // deleted the .then statement that was here
+        // need to specify the query we want to be refetched within our mutation
         }).catch(error => {
             console.log(error)
         })
@@ -39,5 +40,12 @@ class ResolutionForm extends Component {
 }
 
 export default graphql(createResolution, {
-    name: "createResolution" // name of mutation
+    // name of mutation
+    name: "createResolution", 
+    options: {
+        // passing in an array of strings of the query names we want to refetch
+        refetchQueries: [ 
+            "Resolutions" // this is passed into graphql in the App file
+        ]
+    }
 })(ResolutionForm)

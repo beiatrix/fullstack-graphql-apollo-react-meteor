@@ -11,6 +11,9 @@ export default class LoginForm extends Component {
         // a helpful meteor method
         Meteor.loginWithPassword(this.email.value, this.password.value,
         error => {
+            if (!error) {
+                this.props.client.resetStore()
+            }
             console.log(error)
         })
     }

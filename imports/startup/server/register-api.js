@@ -2,6 +2,9 @@ import { createApolloServer } from 'meteor/apollo'
 import { makeExecutableSchema } from 'graphql-tools'
 import merge from 'lodash/merge'
 
+import GoalsSchema from '../../api/goals/Goals.graphql'
+import GoalsResolvers from '../../api/goals/resolvers'
+
 import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql'
 import ResolutionsResolvers from '../../api/resolutions/resolvers'
 
@@ -18,12 +21,14 @@ import UsersResolvers from '../../api/users/resolvers'
 // query is essentially a function, need to define function in schema
 const typeDefs = [ 
     // order of these doesn't matter apparently, maybe works either way
+    GoalsSchema,
     ResolutionsSchema,
     UsersSchema
 ]
 
 // lodash merge 2 objects
 const resolvers = merge(
+    GoalsResolvers,
     ResolutionsResolvers,
     UsersResolvers
 )

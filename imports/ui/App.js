@@ -2,6 +2,7 @@ import React from "react";
 import gql from 'graphql-tag' // allows us to write a graphql query with js
 import { graphql } from 'react-apollo'
 import ResolutionForm from './ResolutionForm'
+import GoalForm from './GoalForm'
 import RegisterForm from './RegisterForm'
 import LoginForm from './LoginForm'
 import { withApollo } from "react-apollo"
@@ -37,6 +38,7 @@ const App = ({ loading, resolutions, client }) => {
             {resolutions.map(resolution => {
                 <li key={resolution._id}>
                     {resolution.name}
+                    <GoalForm resolutionId={resolution._id} />
                 </li>
             })}
             </ul>

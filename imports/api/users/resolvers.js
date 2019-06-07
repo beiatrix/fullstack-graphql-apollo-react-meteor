@@ -6,5 +6,9 @@ export default {
         user(obj, args, { user }) {
             return user || {}
         }
+    },
+    User: {
+        // didn't like shape of data that came out of database, so remapped to a new property 
+        email: user => user.emails[0].address
     }
 }

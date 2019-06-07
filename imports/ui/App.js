@@ -9,7 +9,7 @@ const App = ({data}) => {
     return (
         <div>
             <h1>{data.hi}</h1>
-            <ResolutionForm />
+            <ResolutionForm refetch={data.refetch} />
             {/* 
             when component first loads data doesn't necessarily come in immediately 
             how do we prevent react from trying to load graphql stuff before data is available?
@@ -28,6 +28,7 @@ const App = ({data}) => {
     )
 }
 
+// this is where refetch is coming from. refetch will refetch this query
 const hiQuery = gql`
 {
     hi

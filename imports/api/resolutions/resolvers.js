@@ -15,11 +15,14 @@ export default {
     // a new type
     // usually do these in a separate file and do a merge 
     Mutation: {
-        createResolution() {
-            console.log("got here")
-            Resolutions.insert({
-                name: "Test Res", 
+        // params: (obj, args, context) 
+        // args can be destructured to { name }
+        createResolution(obj, { name }, context) {
+            console.log(name)
+            const resolutionId = Resolutions.insert({
+                name
             })
+            return Resolutions.findOne(resolutionId)
         }
     }
 }

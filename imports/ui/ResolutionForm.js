@@ -4,17 +4,28 @@ import {graphql} from 'react-apollo'
 
 // use the createResolution mutation to return id
 const createResolution = gql`
-    mutation createResolution {
-        createResolution {
+    mutation createResolution($name: String!) {
+        createResolution(name: $name) {
             _id
         }
     }
 `
+// benefits - we get type checking on both client and server side
 
 class ResolutionForm extends Component {
     submitForm = () => {
         console.log(this.name.value)
-        this.props.createResolution()
+        this.props.createResolution({
+            variables: {
+                name: this.name.value
+            }
+        // our mutation returns a promise
+        }).then(({data}) => {
+            // we want to refetch our query
+            this.props.refetch()
+        }).catch(error => {
+            console.log(error)
+        })
     }
 
     render () {

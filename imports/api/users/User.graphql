@@ -3,3 +3,7 @@ type User {
     email: String
 }
 
+# extend keyword usually for queries and mutations, not usually for extending actual schema (extend type User). can define a new schema by extending an old one tho
+extend type Query {
+    user: User
+}

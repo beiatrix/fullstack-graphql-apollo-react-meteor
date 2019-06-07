@@ -11,34 +11,19 @@ import UsersResolvers from '../../api/users/resolvers'
 // in a real project you're gonna have a lot of schemas that will be combining
 // keep creating schemas, importing them, and adding them to typeDefs array below
 
-const testSchema = `
-type Query {
-    hi: String
-    resolutions: [Resolution] 
-    user: User
-}
-`
 // returning an array of resolutions
 
 // not javascript - graphql syntax
 // graphql schema
 // query is essentially a function, need to define function in schema
-const typeDefs = [
-    testSchema,
+const typeDefs = [ 
+    // order of these doesn't matter apparently, maybe works either way
     ResolutionsSchema,
     UsersSchema
 ]
 
-const testResolvers = {
-    Query: {
-        hi() {
-            return "Hello Level Up"
-        }
-    }
-}
-
 // lodash merge 2 objects
-const resolvers = merge(testResolvers,
+const resolvers = merge(
     ResolutionsResolvers,
     UsersResolvers
 )

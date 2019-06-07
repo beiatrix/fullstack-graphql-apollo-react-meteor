@@ -18,7 +18,10 @@ class GoalForm extends Component {
                 name: this.name.value,
                 resolutionId: this.props.resolutionId
             }
-        }).catch(error => {
+        }).then(() => {
+            this.name.value = ""
+        })
+        .catch(error => {
             console.log(error)
         })
     }
@@ -35,4 +38,9 @@ class GoalForm extends Component {
 
 export default graphql(createGoal, {
     name: "createGoal", 
+    options: {
+        refetchQueries: ["Resolutions"] 
+        // everytime we add a goal/resolution it hits our db and refetches everything again
+        // issa quick fix. not necessarily performant
+    }
 })(GoalForm)

@@ -5,6 +5,9 @@ import merge from 'lodash/merge'
 import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql'
 import ResolutionsResolvers from '../../api/resolutions/resolvers'
 
+import UsersSchema from '../../api/users/User.graphql'
+import UsersResolvers from '../../api/users/resolvers'
+
 // in a real project you're gonna have a lot of schemas that will be combining
 // keep creating schemas, importing them, and adding them to typeDefs array below
 
@@ -12,6 +15,7 @@ const testSchema = `
 type Query {
     hi: String
     resolutions: [Resolution] 
+    user: User
 }
 `
 // returning an array of resolutions
@@ -21,7 +25,8 @@ type Query {
 // query is essentially a function, need to define function in schema
 const typeDefs = [
     testSchema,
-    ResolutionsSchema
+    ResolutionsSchema,
+    UsersSchema
 ]
 
 const testResolvers = {
@@ -33,7 +38,10 @@ const testResolvers = {
 }
 
 // lodash merge 2 objects
-const resolvers = merge(testResolvers, ResolutionsResolvers)
+const resolvers = merge(testResolvers,
+    ResolutionsResolvers,
+    UsersResolvers
+)
 console.log(resolvers)
 
 const schema = makeExecutableSchema({

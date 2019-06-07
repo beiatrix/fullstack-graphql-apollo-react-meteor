@@ -12,7 +12,9 @@ export default {
         // destructured userId from context
         resolutions(obj, args, { userId }) {
             console.log(userId)
-            return Resolutions.find({}).fetch()
+            return Resolutions.find({
+                userId
+            }).fetch()
         }
     },
     // a new type

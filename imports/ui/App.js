@@ -12,14 +12,20 @@ const App = ({ loading, resolutions, client }) => {
     if (loading) return null
     return (
         <div>
-            {/* deleted refetch prop that was here. shouldn't have to refetch manually */}
-            <button 
-                onClick={() => { 
-                    Meteor.logout()
-                    client.resetStore() // resets store whenever someone logs in or out
-            }}>Logout</button>
-            <RegisterForm client={client} />
-            <LoginForm client={client} />
+            {
+                user._id ? (
+                    <button 
+                        onClick={() => { 
+                            Meteor.logout()
+                            client.resetStore() // resets store whenever someone logs in or out
+                    }}>Logout</button>
+                ) : (
+                    <div>
+                        <RegisterForm client={client} />
+                        <LoginForm client={client} />
+                    </div>
+                )
+            }
             <ResolutionForm />
             {/* 
             when component first loads data doesn't necessarily come in immediately 

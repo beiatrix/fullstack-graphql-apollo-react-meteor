@@ -3,8 +3,7 @@ import gql from 'graphql-tag' // allows us to write a graphql query with js
 import { graphql } from 'react-apollo'
 import ResolutionForm from './ResolutionForm'
 import GoalForm from './GoalForm'
-import RegisterForm from './RegisterForm'
-import LoginForm from './LoginForm'
+import UserForm from './UserForm'
 import Goal from './resolutions/Goal'
 import { withApollo } from "react-apollo"
 
@@ -14,44 +13,35 @@ const App = ({ loading, resolutions, client }) => {
     if (loading) return null
     return (
         <div>
-            {
-                user._id ? (
-                    <button 
-                        onClick={() => { 
-                            Meteor.logout()
-                            client.resetStore() // resets store whenever someone logs in or out
-                    }}>Logout</button>
-                ) : (
-                    <div>
-                        <RegisterForm client={client} />
-                        <LoginForm client={client} />
-                    </div>
-                )
+            <UserForm user={user} client={client} />
+            {user._id &&
+                <ResolutionForm />
             }
-            <ResolutionForm />
             {/* 
             when component first loads data doesn't necessarily come in immediately 
             how do we prevent react from trying to load graphql stuff before data is available?
             can't do default props
             what about data.loading?
             */}
-            <ul>
-            {resolutions.map(resolution => {
-                <li key={resolution._id}>
-                    <span style={{
-                        textDecoration: resolution.completed ? "line-through" : "none"
-                    }}>
-                        {resolution.name}
-                    </span>
-                    {/* <ul>
-                        {resolution.goals.map(goal => (
-                            <Goal goal={goal} key={goal._id} />
-                        ))}
-                    </ul> */}
-                    <GoalForm resolutionId={resolution._id} />
-                </li>
-            })}
-            </ul>
+            {user._id &&
+                <ul>
+                {resolutions.map(resolution => {
+                    <li key={resolution._id}>
+                        <span style={{
+                            textDecoration: resolution.completed ? "line-through" : "none"
+                        }}>
+                            {resolution.name}
+                        </span>
+                        {/* <ul>
+                            {resolution.goals.map(goal => (
+                                <Goal goal={goal} key={goal._id} />
+                            ))}
+                        </ul> */}
+                        <GoalForm resolutionId={resolution._id} />
+                    </li>
+                })}
+                </ul>
+            }
         </div>
     )
 }

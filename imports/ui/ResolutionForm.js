@@ -13,6 +13,10 @@ const createResolution = gql`
 // benefits - we get type checking on both client and server side
 
 class ResolutionForm extends Component {
+    state = {
+        error: null
+    }
+
     submitForm = () => {
         console.log(this.name.value)
         this.props.createResolution({
@@ -26,12 +30,14 @@ class ResolutionForm extends Component {
         // need to specify the query we want to be refetched within our mutation
         }).catch(error => {
             console.log(error)
+            this.setState({ error: error.message })
         })
     }
 
     render () {
         return (
             <div>
+                {this.state.error && <p>{this.state.error}</p>}
                 <input type="text" ref={input => (this.name = input)} />
                 <button onClick={this.submitForm}>Submit</button>
             </div>

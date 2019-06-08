@@ -44,11 +44,14 @@ export default {
         // params: (obj, args, context) 
         // args can be destructured to { name }
         createResolution(obj, { name }, context) {
-            console.log(name)
-            const resolutionId = Resolutions.insert({
-                name
-            })
-            return Resolutions.findOne(resolutionId)
+            if (userId) {
+                // console.log(name)
+                const resolutionId = Resolutions.insert({
+                    name
+                })
+                return Resolutions.findOne(resolutionId)
+            }
+            throw new Error("unauthorized")
         }
     }
 }

@@ -33,7 +33,9 @@ export default {
                 resolutionId: resolution._id,
                 completed: false
             }).fetch()
-            return !goals.length 
+            if (goals.length === 0) return false
+            const completedGoals = goals.filter(goal => goal.completed)
+            return goals.length === completedGoals.length
         }
     },
     // a new type

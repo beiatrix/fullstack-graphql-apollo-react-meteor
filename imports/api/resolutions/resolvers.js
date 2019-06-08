@@ -23,11 +23,17 @@ export default {
     // relations!
     Resolution: {
         // a resolution object
-        goals: resolution => {
-            console.log(resolution._id)
-            return Goals.find({
+        goals: resolution => 
+            // console.log(resolution._id)
+            Goals.find({
                 resolutionId: resolution._id
+            }).fetch(),
+        completed: resolution => {
+            const goals = Goals.find({
+                resolutionId: resolution._id,
+                completed: false
             }).fetch()
+            return !goals.length 
         }
     },
     // a new type
